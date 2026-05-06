@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "rustterminal",
+        "title": "RustTerminal",
         "width": 800,
         "height": 600
       }
