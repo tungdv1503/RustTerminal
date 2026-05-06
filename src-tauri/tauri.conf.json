@@ -13,8 +13,9 @@
     "windows": [
       {
         "title": "RustTerminal",
-        "width": 800,
-        "height": 600
+        "width": 1080,
+        "height": 720,
+        "decorations": false
       }
     ],
     "security": {
