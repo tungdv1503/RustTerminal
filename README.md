@@ -1,0 +1,2 @@
+# RustTerminal
+GUI Smart Terminal
