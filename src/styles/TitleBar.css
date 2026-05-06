@@ -1,0 +1,168 @@
+/* src/styles/TitleBar.css */
+
+:root {
+  --titlebar-height: 32px;
+  --color-titlebar-bg: #1e2029;
+  --color-titlebar-hover: #2d303b;
+  --color-close-hover: #c42b1c;
+  --color-titlebar-text: #a9abb3;
+  --color-dropdown-bg: #252833;
+  --color-dropdown-border: #3b4256;
+}
+
+.titlebar {
+  height: var(--titlebar-height);
+  background: var(--color-titlebar-bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  user-select: none;
+  border-bottom: 1px solid #2a2d3d;
+}
+
+.titlebar-left {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.menu-container {
+  position: relative;
+  height: 100%;
+}
+
+.menu-trigger {
+  width: 56px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: transparent;
+  color: var(--color-titlebar-text);
+  cursor: pointer;
+  transition:
+    background 0.1s,
+    color 0.1s;
+  box-shadow: none;
+}
+
+.menu-trigger:hover {
+  background: var(--color-titlebar-hover);
+  color: white;
+}
+
+.app-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-titlebar-text);
+  margin-left: 4px;
+  letter-spacing: 0.5px;
+}
+
+.titlebar-drag-region {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.titlebar-controls {
+  display: flex;
+  height: 100%;
+}
+
+.control-btn {
+  width: 56px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: transparent;
+  color: var(--color-titlebar-text);
+  transition:
+    background 0.1s,
+    color 0.1s;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.control-btn:hover {
+  background: var(--color-titlebar-hover);
+  color: white;
+}
+
+.close-btn:hover {
+  background: var(--color-close-hover) !important;
+  color: white !important;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  top: var(--titlebar-height);
+  left: 4px;
+  background: var(--color-dropdown-bg);
+  border: 1px solid var(--color-dropdown-border);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  min-width: 220px;
+  z-index: 10000;
+  border-radius: 6px;
+  padding: 6px 0;
+  animation: slideIn 0.15s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menu-item {
+  padding: 7px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #d2d4d9;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.menu-item:hover {
+  background: #343746;
+  color: white;
+}
+
+.menu-item kbd {
+  font-family: inherit;
+  font-size: 10px;
+  color: #858b98;
+  background: #1c1f2e;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.menu-item.active {
+  color: #ef5b25;
+}
+
+.menu-divider {
+  height: 1px;
+  background: var(--color-dropdown-border);
+  margin: 6px 0;
+}
+
+.menu-item .arrow {
+  font-size: 10px;
+  color: #858b98;
+}
