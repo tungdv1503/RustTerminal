@@ -2,13 +2,14 @@ import { getCurrentWindow } from "@tauri-apps/api/window";
 import { useState, useEffect, useRef } from "react";
 import { Menu, Minus, Square, X } from "lucide-react";
 import "@styles/TitleBar.css";
+import { useTabStore } from "@/store/useTabStore";
 
 const appWindow = getCurrentWindow();
 
 const TitleBar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-
+  const { tabs, activeTabId, setActiveTab, closeTab } = useTabStore();
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -72,7 +73,34 @@ const TitleBar = () => {
             </div>
           )}
         </div>
-        <span className="app-title">RustTerminal</span>
+        <button
+          className={`home-btn ${activeTabId === "home" ? "active" : ""}`}
+          onClick={() => setActiveTab("home")}
+        >
+          <span className="app-title">RustTerminal</span>
+        </button>
+        <div className="titlebar-tabs">
+          {tabs.map(
+            (tab) =>
+              tab.id !== "home" && (
+                <div
+                  key={tab.id}
+                  className={`tab-item ${activeTabId === tab.id ? "active" : ""}`}
+                  onClick={() => setActiveTab(tab.id)}
+                >
+                  <span className="tab-title text-xs">{tab.title}</span>
+                  <X
+                    size={14}
+                    className="close-tab-icon"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeTab(tab.id);
+                    }}
+                  />
+                </div>
+              ),
+          )}
+        </div>
       </div>
 
       <div data-tauri-drag-region className="titlebar-drag-region"></div>

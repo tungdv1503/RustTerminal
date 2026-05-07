@@ -1,15 +1,29 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
-import TitleBar from "./components/TitleBar";
+import TitleBar from "@components/TitleBar";
+import { useTabStore } from "@store/useTabStore";
+import HomePage from "@features/Home/HomePage";
 
 function App() {
+  const { tabs, activeTabId } = useTabStore();
   return (
     <div>
       <TitleBar />
       <main className="container">
-        <h1>Welcome to RustTerminal</h1>
+        <div className="flex-1 relative">
+          {tabs.map((tab) => (
+            <div
+              key={tab.id}
+              className={tab.id === activeTabId ? "block h-full" : "hidden"}
+            >
+              {tab.type === "home" ? (
+                <HomePage />
+              ) : (
+                // <SSHTerminal sessionId={tab.id} />
+                <div>Terminal</div>
+              )}
+            </div>
+          ))}
+        </div>
       </main>
     </div>
   );

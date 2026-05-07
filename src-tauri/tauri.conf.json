@@ -15,7 +15,9 @@
         "title": "RustTerminal",
         "width": 1080,
         "height": 720,
-        "decorations": false
+        "decorations": false,
+        "transparent": true,
+        "center": true
       }
     ],
     "security": {
